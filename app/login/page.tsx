@@ -28,7 +28,7 @@ function page() {
     return (
         <>
             <div className="max-w-md h-[420px] mx-auto mt-10 p-10 bg-gray-900 rounded-lg shadow-md">
-                <h1 className='text-3xl font-bold text-white mb-6 text-center'>Login</h1>
+                <h1 className='text-3xl font-bold text-white mb-6 text-center'>Sign In</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <label className="block mb-1">Email Address:</label>
                   <input
@@ -63,8 +63,8 @@ function page() {
                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
                         <span className="text-sm text-gray-700 font-medium">Sign in with Google</span>
                     </button>
-                    <p className='mb-6'>
-                      Already have an account?{" "}
+                    <p className='mb-10'>
+                      Don't have an account?{" "}
                       <a href="/register" className="text-white hover:underline">
                         SignUp
                       </a>

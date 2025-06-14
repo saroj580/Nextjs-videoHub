@@ -47,7 +47,7 @@ function RegisterPage() {
   return (
     <>
       <div className="max-w-md h-[520px] mx-auto mt-10 p-10 bg-gray-900 rounded-lg shadow-md">
-        <h1 className='text-3xl font-bold text-white mb-6 text-center'>Register</h1>
+        <h1 className='text-3xl font-bold text-white mb-6 text-center'>Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <label className="block mb-1">Email Address:</label>
           <input
@@ -91,7 +91,7 @@ function RegisterPage() {
           <p>
             Already have an account?{" "}
             <a href="/login" className="text-white hover:underline">
-              login
+              Sign In
             </a>
           </p>
         </div>
