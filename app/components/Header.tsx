@@ -1,7 +1,9 @@
-import { info } from "console";
+"use client";
+
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Home, User } from "lucide-react";
+import { useNotification } from "./Notification";
 
 export default function Header() {
     const { data: session } = useSession();
@@ -12,7 +14,7 @@ export default function Header() {
             await signOut();
             showNotification("Signout successfully", "success");
         } catch (error) {
-            showNotification("Failed to signout", error)
+            showNotification("Failed to signout", "error")
         }
     };
 
@@ -26,7 +28,7 @@ export default function Header() {
                             className="btn btn-ghost text-xl gap-2 normal-case font-bold"
                             prefetch={true}
                             onClick={() => 
-                                showNotification("Welcome to ImageKit Reels Pro", info)
+                                showNotification("Welcome to ImageKit Reels Pro", "info")
                             }
                         >
                             <Home className="w-5 h-5" />
