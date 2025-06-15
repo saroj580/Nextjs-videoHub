@@ -37,7 +37,37 @@ const FileUpload = ({onSuccess, onProgress, fileType}:FileUploadProps) => {
     }
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.value;
+        const file = e.target.files?.[0];
+        if (!file || !validateFile(file)) return;
+
+        setUploading(true);
+        setError(null);
+
+        try {
+            const authRes = await fetch("/api/auth/imagekit-auth")
+            const auth = await authRes.json();
+            const res = await upload({
+                file,
+                fileName : file.name,
+                publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY!,
+                signature : auth.signature,
+                expire : auth.expire,
+                token:auth.token,
+                onProgress: (event) => {
+                    if (event.lengthComputable && onProgress){
+                        const percent = (event.loaded / event.total) * 100;
+                        onProgress(Math.round(percent));
+                    }
+                },
+            });
+            console.log("Upload response:", res);
+            onSuccess(res);
+            
+        } catch (error) {
+            console.error("Upload failed", error);
+        } finally {
+            setUploading(false);
+        }
         
     }
 
